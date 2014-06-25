@@ -7,10 +7,10 @@ gem 'spring', :group => :development
 gem 'pg'
 
 group :test do
-  gem 'rspec-rails', '~>2.14.0'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'simplecov'
+  gem 'rspec-rails', '~>2.14.0'
 end
 
 group :test, :development do
