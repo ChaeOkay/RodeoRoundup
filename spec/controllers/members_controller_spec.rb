@@ -24,7 +24,7 @@ describe MembersController do
       expect(json_response['first_name']).to eq member.first_name
     end
 
-    it "includes the member lastname" do
+    it "includes the member last name" do
       json_response = JSON.parse(response.body)
       expect(json_response['last_name']).to eq member.last_name
     end
