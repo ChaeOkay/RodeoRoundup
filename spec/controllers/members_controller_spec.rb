@@ -16,17 +16,17 @@ describe MembersController do
 
     it "includes the member id" do
       json_response = JSON.parse(response.body)
-      expect(json_response['id']).to eq member.id
+      expect(json_response['member']['id']).to eq member.id
     end
 
     it "includes the member first name" do
       json_response = JSON.parse(response.body)
-      expect(json_response['first_name']).to eq member.first_name
+      expect(json_response['member']['first_name']).to eq member.first_name
     end
 
     it "includes the member last name" do
       json_response = JSON.parse(response.body)
-      expect(json_response['last_name']).to eq member.last_name
+      expect(json_response['member']['last_name']).to eq member.last_name
     end
   end
 
