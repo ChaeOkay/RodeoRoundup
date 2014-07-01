@@ -2,6 +2,24 @@ require 'spec_helper'
 
 describe OrganizationsController do
 
+  context 'GET index' do
+
+    before do
+      5.times { FactoryGirl.create(:organization) }
+    end
+
+    it 'returns 200 on success' do
+      get :index, format: :json
+      expect(response.code).to eq '200'
+    end
+
+    it 'returns 3 organizations' do
+      get :index, format: :json
+      json_response = JSON.parse(response.body)
+      expect(json_response.size).to eq 5
+    end
+  end
+
   context 'GET show' do
 
     let!(:organization) { FactoryGirl.create(:organization) }
