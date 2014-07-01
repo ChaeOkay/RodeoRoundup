@@ -3,8 +3,12 @@ ruby '2.1.2'
 
 gem 'rails', '4.1.1'
 gem 'rails-api'
-gem 'spring', :group => :development
 gem 'pg'
+
+group :development do
+  gem 'active_model_serializers'
+  gem 'spring'
+end
 
 group :test do
   gem 'factory_girl_rails'
