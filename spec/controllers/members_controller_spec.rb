@@ -11,7 +11,7 @@ describe MembersController do
       expect(response.code).to eq '200'
     end
 
-    describe 'attributes' do
+    describe 'response attributes' do
 
       before do
         get :show, id: member.id, format: :json
