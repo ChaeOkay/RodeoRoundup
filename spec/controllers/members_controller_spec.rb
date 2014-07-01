@@ -2,6 +2,24 @@ require 'spec_helper'
 
 describe MembersController do
 
+  context 'GET index' do
+
+    before do
+      3.times { FactoryGirl.create(:member) }
+    end
+
+    it 'returns 200 on success' do
+      get :index, format: :json
+      expect(response.code).to eq '200'
+    end
+
+    it 'returns 3 members' do
+      get :index, format: :json
+      json_response = JSON.parse(response.body)
+      expect(json_response.size).to eq 3
+    end
+  end
+
   context 'GET show' do
 
     let!(:member) { FactoryGirl.create(:member) }
