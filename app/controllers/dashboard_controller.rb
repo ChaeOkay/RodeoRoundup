@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
 
   def index
-    resources = Resources.group(params)
+    resources = Dashboard.group(params)
     render json: { dashboard: resources }
   end
 end
