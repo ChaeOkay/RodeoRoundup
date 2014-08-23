@@ -1,11 +1,10 @@
 class Resource
 
-  attr_reader :resource
+  attr_reader :dashboard
 
   def self.group(args)
     resources = args.fetch(:resources)
-    resource_collection = resources.map { |name| new(resource: name) }
-    resource_collection.map(&:format_json)
+    Hash[resources.map { |name| [name.to_sym, new(resource: name).serialize_resource] }]
   end
 
   def initialize(args)
@@ -13,7 +12,7 @@ class Resource
   end
 
   def klass
-    resource.capitalize
+    resource.to_s.capitalize
   end
 
   def all_records
@@ -24,6 +23,8 @@ class Resource
     { klass => all_records }
   end
 
-  def read_attribute_for_serialization
+  def serialize_dashboard
+    # this is not working ?
+    eval("#{klass}Serializer").new(all_records)
   end
 end

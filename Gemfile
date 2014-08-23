@@ -4,9 +4,9 @@ ruby '2.1.2'
 gem 'rails', '4.1.1'
 gem 'rails-api'
 gem 'pg'
+gem 'active_model_serializers'
 
 group :development do
-  gem 'active_model_serializers'
   gem 'spring'
 end
 
