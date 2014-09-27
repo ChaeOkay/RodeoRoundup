@@ -16,7 +16,8 @@ describe OrganizationsController do
     it 'returns 3 organizations' do
       get :index, format: :json
       json_response = JSON.parse(response.body)
-      expect(json_response.size).to eq 5
+      organizations = json_response['organizations']
+      expect(organizations.size).to eq 5
     end
   end
 
