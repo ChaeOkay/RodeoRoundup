@@ -16,7 +16,8 @@ describe MembersController do
     it 'returns 3 members' do
       get :index, format: :json
       json_response = JSON.parse(response.body)
-      expect(json_response.size).to eq 3
+      members = json_response['members']
+      expect(members.size).to eq 3
     end
   end
 
