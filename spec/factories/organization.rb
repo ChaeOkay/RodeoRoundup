@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :organization do
     member
-    sequence(:name) { |number| "organiation-#{number}" }
+    sequence(:name) { |number| "organization-#{number}" }
     address_1   '10 Main St.'
     address_2   nil
     city        'Atlanta'
