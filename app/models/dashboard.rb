@@ -7,12 +7,12 @@ class Dashboard
   end
 
   def serialized
-    Hash[mapped_resources]
+    Hash[serialized_resources]
   end
 
   private
 
-  def mapped_resources
+  def serialized_resources
     resources.map do |name|
       [name, serializer.serialize(name)]
     end
