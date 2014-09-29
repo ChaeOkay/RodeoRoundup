@@ -1,30 +1,20 @@
 class Dashboard
-  attr_reader :resource
+  attr_reader :resources, :serializer
 
-  def self.group(args)
-    resources = args.fetch(:resources)
+  def initialize(args, serializer: DashboardResourceCollection)
+    @resources = args.fetch(:resources)
+    @serializer = serializer
+  end
 
-    mapped_resources = resources.map do |name|
-      [name, new(resource: name).serialize_resource]
-    end
-
+  def serialized
     Hash[mapped_resources]
   end
 
-  def initialize(args)
-    @resource = args.fetch(:resource).singularize
-  end
+  private
 
-  def all_records
-    eval(resource.classify).all
-  end
-
-  def resource_serializer
-    eval("#{resource}Serializer".classify)
-  end
-
-  def serialize_resource
-    ActiveModel::ArraySerializer.new(all_records,
-                                     each_serializer: resource_serializer)
+  def mapped_resources
+    resources.map do |name|
+      [name, serializer.serialize(name)]
+    end
   end
 end

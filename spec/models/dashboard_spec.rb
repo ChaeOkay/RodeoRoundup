@@ -11,7 +11,7 @@ describe Dashboard do
     let(:group_resource_1) { group[resource_1] }
     let(:group_resource_2) { group[resource_2] }
 
-    it "returns an ActiveModel::ArraySerializer for the given resources" do
+    it "returns a formatted response" do
       expect(group_resource_1).to be_a ActiveModel::ArraySerializer
       expect(group_resource_1.options[:each_serializer]).to eq resource_serializer_1
       expect(group_resource_2).to be_a ActiveModel::ArraySerializer
