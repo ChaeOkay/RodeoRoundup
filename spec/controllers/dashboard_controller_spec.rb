@@ -10,20 +10,20 @@ describe DashboardController do
     let!(:organization3) { FactoryGirl.create(:organization) }
 
     it 'includes each dashboard as the key' do
-      get :index, resources: ["member", "organization"], format: :json
-      json_response = JSON.parse(response.body)['dashboard']
+      get :index, resources: ["members", "organizations"], format: :json
+      json_response = JSON.parse(response.body)
       expect(json_response.size).to eq 2
     end
 
     it 'includes all members in the response' do
-      get :index, resources: ["member", "organization"], format: :json
-      json_response = JSON.parse(response.body)['dashboard'][0]['Member']
+      get :index, resources: ["members", "organizations"], format: :json
+      json_response = JSON.parse(response.body)['members']
       expect(json_response.size).to eq Member.count
     end
 
     it 'includes all organizations in the response' do
-      get :index, resources: ["member", "organization"], format: :json
-      json_response = JSON.parse(response.body)['dashboard'][1]['Organization']
+      get :index, resources: ["members", "organizations"], format: :json
+      json_response = JSON.parse(response.body)['organizations']
       expect(json_response.size).to eq Organization.count
     end
   end
