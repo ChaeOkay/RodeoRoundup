@@ -1,22 +1,28 @@
 require 'spec_helper'
 
 describe Dashboard do
-  describe 'group' do
-    let(:resource_1) { 'members' }
-    let(:resource_2) { 'organizations' }
-    let(:resource_serializer_1) { eval("#{resource_1.singularize}Serializer".classify) }
-    let(:resource_serializer_2) { eval("#{resource_2.singularize}Serializer".classify) }
+  describe '#serialized' do
+    let!(:member1) { FactoryGirl.create(:member) }
+    let!(:member2) { FactoryGirl.create(:member) }
+    let!(:organization1) { FactoryGirl.create(:organization) }
+    let!(:organization2) { FactoryGirl.create(:organization) }
+    let!(:organization3) { FactoryGirl.create(:organization) }
 
-    let(:group) { described_class.new(resources: [resource_1, resource_2]) }
-    let(:serialized_group) { group.serialized }
-    let(:group_resource_1) { serialized_group[resource_1] }
-    let(:group_resource_2) { serialized_group[resource_2] }
+    let(:dashboard) { described_class.new(resources: ['members', 'organizations']) }
+    subject(:serialized_dashboard) { dashboard.serialized }
 
-    it "returns a formatted response" do
-      expect(group_resource_1).to be_a ActiveModel::ArraySerializer
-      expect(group_resource_1.options[:each_serializer]).to eq resource_serializer_1
-      expect(group_resource_2).to be_a ActiveModel::ArraySerializer
-      expect(group_resource_2.options[:each_serializer]).to eq resource_serializer_2
+    it 'includes each dashboard as the key' do
+      expect(serialized_dashboard.size).to eq 2
+    end
+
+    it 'includes all members in the response' do
+      members_serializer = serialized_dashboard['members']
+      expect(members_serializer.object.size).to eq Member.count
+    end
+
+    it 'includes all organizations in the response' do
+      organizations_serializer = serialized_dashboard['organizations']
+      expect(organizations_serializer.object.size).to eq Organization.count
     end
   end
 end
