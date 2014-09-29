@@ -3,22 +3,28 @@ class Dashboard
 
   def self.group(args)
     resources = args.fetch(:resources)
-    Hash[resources.map { |name| [new(resource: name).serialize_resource] }]  #how does the serializer convert to json?
+
+    mapped_resources = resources.map do |name|
+      [name, new(resource: name).serialize_resource]
+    end
+
+    Hash[mapped_resources]
   end
 
   def initialize(args)
-    @resource = args.fetch(:resource)
-  end
-
-  def klass
-    resource.to_s.capitalize
+    @resource = args.fetch(:resource).singularize
   end
 
   def all_records
-    eval(klass).all
+    eval(resource.classify).all
+  end
+
+  def resource_serializer
+    eval("#{resource}Serializer".classify)
   end
 
   def serialize_resource
-    eval("#{klass}Serializer").new(all_records)
+    ActiveModel::ArraySerializer.new(all_records,
+                                     each_serializer: resource_serializer)
   end
 end
