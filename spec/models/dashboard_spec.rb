@@ -7,9 +7,10 @@ describe Dashboard do
     let(:resource_serializer_1) { eval("#{resource_1.singularize}Serializer".classify) }
     let(:resource_serializer_2) { eval("#{resource_2.singularize}Serializer".classify) }
 
-    subject(:group) { described_class.group(resources: [resource_1, resource_2]) }
-    let(:group_resource_1) { group[resource_1] }
-    let(:group_resource_2) { group[resource_2] }
+    let(:group) { described_class.new(resources: [resource_1, resource_2]) }
+    let(:serialized_group) { group.serialized }
+    let(:group_resource_1) { serialized_group[resource_1] }
+    let(:group_resource_2) { serialized_group[resource_2] }
 
     it "returns a formatted response" do
       expect(group_resource_1).to be_a ActiveModel::ArraySerializer
