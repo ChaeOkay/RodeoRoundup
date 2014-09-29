@@ -1,9 +1,9 @@
 class DashboardResourceCollection
+  attr_reader :resource
+
   def self.serialize(resource)
     new(resource).serialize
   end
-
-  attr_reader :resource
 
   def initialize(resource)
     @resource = resource.singularize
