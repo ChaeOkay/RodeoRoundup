@@ -14,12 +14,12 @@ describe Dashboard do
 
     it 'includes all members in the response' do
       members_serializer = serialized_dashboard['members']
-      expect(members_serializer.object.size).to eq Member.count
+      expect(members_serializer.object.size).to eq 4
     end
 
     it 'includes all organizations in the response' do
       organizations_serializer = serialized_dashboard['organizations']
-      expect(organizations_serializer.object.size).to eq Organization.count
+      expect(organizations_serializer.object.size).to eq 3
     end
   end
 end
