@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe OrganizationsController do
-
   context 'GET index' do
 
     before do
@@ -22,7 +21,6 @@ describe OrganizationsController do
   end
 
   context 'GET show' do
-
     let!(:organization) { FactoryGirl.create(:organization) }
 
     it 'returns 200 on success' do
