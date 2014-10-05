@@ -2,11 +2,8 @@ require 'spec_helper'
 
 describe Dashboard do
   describe '#serialized' do
-    let!(:member1) { FactoryGirl.create(:member) }
-    let!(:member2) { FactoryGirl.create(:member) }
-    let!(:organization1) { FactoryGirl.create(:organization) }
-    let!(:organization2) { FactoryGirl.create(:organization) }
-    let!(:organization3) { FactoryGirl.create(:organization) }
+    let!(:member) { FactoryGirl.create(:member) }
+    let!(:organization) { FactoryGirl.create_list(:organization, 3) }
 
     let(:dashboard) { described_class.new(resources: ['members', 'organizations']) }
     subject(:serialized_dashboard) { dashboard.serialized }
