@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe DashboardController do
-  describe 'GET index' do
+  describe 'GET #index' do
     before do
       FactoryGirl.create_list(:member, 2)
       FactoryGirl.create_list(:organization, 3)

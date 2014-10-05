@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe DashboardResourceCollection do
-
   describe '#serialize' do
     before do
       FactoryGirl.create_list(:member, 2)

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe MembersController do
-  context 'GET index' do
+  context 'GET #index' do
 
     before do
       FactoryGirl.create_list(:member, 3)
@@ -20,7 +20,7 @@ describe MembersController do
     end
   end
 
-  context 'GET show' do
+  context 'GET #show' do
     let!(:member) { FactoryGirl.create(:member) }
 
     it 'returns 200 on success' do
