@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe DashboardController do
-
   describe 'GET index' do
     let!(:member) { FactoryGirl.create_list(:member, 2) }
     let!(:organization) { FactoryGirl.create_list(:organization, 3) }

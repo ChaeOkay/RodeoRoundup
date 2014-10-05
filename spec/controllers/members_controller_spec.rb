@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe MembersController do
-
   context 'GET index' do
 
     before do
@@ -22,7 +21,6 @@ describe MembersController do
   end
 
   context 'GET show' do
-
     let!(:member) { FactoryGirl.create(:member) }
 
     it 'returns 200 on success' do
