@@ -2,12 +2,14 @@ require 'spec_helper'
 
 describe Dashboard do
   describe '#serialized' do
-    let!(:member) { FactoryGirl.create(:member) }
-    let!(:organization) { FactoryGirl.create_list(:organization, 3) }
-
     let(:resources) { ['members', 'organizations'] }
     let(:dashboard) { described_class.new(resources: resources) }
     subject(:serialized_dashboard) { dashboard.serialized }
+
+    before do
+      FactoryGirl.create(:member)
+      FactoryGirl.create_list(:organization, 3)
+    end
 
     it 'includes each dashboard as the key' do
       expect(serialized_dashboard.size).to eq resources.size

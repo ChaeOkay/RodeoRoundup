@@ -2,8 +2,10 @@ require 'spec_helper'
 
 describe DashboardController do
   describe 'GET index' do
-    let!(:member) { FactoryGirl.create_list(:member, 2) }
-    let!(:organization) { FactoryGirl.create_list(:organization, 3) }
+    before do
+      FactoryGirl.create_list(:member, 2)
+      FactoryGirl.create_list(:organization, 3)
+    end
 
     it 'returns 200 with valid params' do
       valid_params = { resources: ['members', 'organizations'] }
