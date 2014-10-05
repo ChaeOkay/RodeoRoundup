@@ -4,7 +4,7 @@ describe OrganizationsController do
   context 'GET index' do
 
     before do
-      5.times { FactoryGirl.create(:organization) }
+      FactoryGirl.create_list(:organization, 5)
     end
 
     it 'returns 200 on success' do

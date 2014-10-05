@@ -3,8 +3,7 @@ require 'spec_helper'
 describe DashboardResourceCollection do
 
   describe '#serialize' do
-    let!(:member_1) { FactoryGirl.create(:member) }
-    let!(:member_2) { FactoryGirl.create(:member) }
+    let!(:member) { FactoryGirl.create_list(:member, 2) }
 
     let(:resource) { 'members' }
     subject(:dashboard_resource_collection) { described_class.serialize(resource) }

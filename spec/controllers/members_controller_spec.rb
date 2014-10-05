@@ -4,7 +4,7 @@ describe MembersController do
   context 'GET index' do
 
     before do
-      3.times { FactoryGirl.create(:member) }
+      FactoryGirl.create_list(:member, 3)
     end
 
     it 'returns 200 on success' do
