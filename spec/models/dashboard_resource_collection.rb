@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe DashboardResourceCollection do
   describe '#serialize' do
+
     before do
       FactoryGirl.build_stubbed_list(:member, 2)
     end
