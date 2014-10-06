@@ -7,8 +7,8 @@ describe Dashboard do
     subject(:serialized_dashboard) { dashboard.serialized }
 
     before do
-      FactoryGirl.create(:member)
-      FactoryGirl.create_list(:organization, 3)
+      FactoryGirl.build_stubbed(:member)
+      FactoryGirl.build_stubbed_list(:organization, 3)
     end
 
     it 'includes each dashboard as the key' do
